@@ -94,13 +94,18 @@ void changeShoe(Shoe* shoes, int index, std::string newBrand, std::string newMod
 }
 
 int main() {
-    const int n = 3;
+    int n;
+    std::cout << "Введите количество пар обуви: ";
+    std::cin >> n;
 
-    Shoe shoes[n] = {
-        { "Brand 1", "Model 1", 36, 29.99 },
-        { "Brand 2", "Model 2", 37, 59.99 },
-        { "Brand 3", "Model 3", 38, 89.99 }
-    };
+    Shoe* shoes = new Shoe[n];
+
+    for (int i = 0; i < n; i++) {
+        shoes[i].brand = "Brand " + std::to_string(i+1);
+        shoes[i].model = "Model " + std::to_string(i+1);
+        shoes[i].size = i+36;
+        shoes[i].price = (i+1)*29.99;
+    }
 
     std::cout << "Исходный массив:" << std::endl;
     for (int i = 0; i < n; i++) {
@@ -108,8 +113,8 @@ int main() {
             << shoes[i].size << ", Цена - " << shoes[i].price << std::endl;
     }
 
-    int index;
     std::cout << "Введите индекс элемента, который хотите изменить: ";
+    int index;
     std::cin >> index;
 
     std::string newBrand;
@@ -134,5 +139,7 @@ int main() {
             << shoes[i].size << ", Цена - " << shoes[i].price << std::endl;
     }
 
-    return 0;
-}
+    delete[] shoes;
+    return 0
+    
+    
